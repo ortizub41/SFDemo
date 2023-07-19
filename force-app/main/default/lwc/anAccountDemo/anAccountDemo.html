@@ -1,0 +1,36 @@
+<!-- sldsValidatorIgnore -->
+<template>
+	<lightning-quick-action-panel header={label.ACCOUNT}>
+		<div class="slds-p-around_none slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_none modalBody">
+			 <lightning-card>
+				<div class="slds-m-around_medium">
+					<table class="slds-table slds-table_cell-buffer slds-table_bordered" aria-labelledby="element-with-table-label other-element-with-table-label">
+						<thead>
+							<tr class="slds-line-height_reset">
+								<th scope="slds-col">
+									<div class="slds-truncate" title="First Name">{label.ACCOUNT_NAME}</div>
+								</th>
+								<th scope="slds-col">
+									<div class="slds-truncate" title="Edit">{label.EDIT_ACCOUNT}</div>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<template for:each={accountList} for:item="acct">
+								<tr class="inputRows" key={acct.Id}>
+									<td data-label="Account Name">
+										<lightning-input type="text" class="fields" variant="label-hidden" label="Name" name="LastName" value={acct.Name} data-id={acct.Id} onchange={updateValues} disabled></lightning-input>
+									</td>
+									<td data-label="Edit">
+										<lightning-button-icon icon-name="action:edit" alternative-text="Edit" title="Edit" data-id={acct.Id} onclick={handleEditAction}></lightning-button-icon>
+									</td>
+								</tr>
+							</template>
+						</tbody>
+					</table>
+				</div>
+			</lightning-card>
+		</div>
+		<c-edit-account oneditaccount={updateRecordView}></c-edit-account>
+	</lightning-quick-action-panel>
+</template>
